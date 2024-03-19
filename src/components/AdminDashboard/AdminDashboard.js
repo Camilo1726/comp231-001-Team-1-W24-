@@ -9,4 +9,5 @@ const AdminDashboard = () => {
   );
 };
 
+/* export Admin dashboard */
 export default AdminDashboard;
