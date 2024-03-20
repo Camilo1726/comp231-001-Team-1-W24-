@@ -1,0 +1,44 @@
+/* navigation.css */
+
+.navbar {
+    background-color: transparent !important;
+    padding: 15px;
+    border: none;
+  }
+  
+  .navbar-brand img {
+    width: 150px; /* Adjust the width as needed */
+    height: auto;
+  }
+  
+  .navbar-nav {
+    margin-left: auto; /* Push the nav items to the right */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #2596be !important;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: black !important; /* Change to the desired hover color */
+    text-decoration: none;
+  }
+  
+  .navbar-nav .btn {
+    background-color: #2596be;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .navbar-nav .btn:hover {
+    background-color: #0077cc; /* Change to the desired hover color */
+    color: white;
+  }
+  
