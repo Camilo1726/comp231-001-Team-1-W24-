@@ -1,5 +1,9 @@
 // flightsData.js
 
+//this is the provisional schema for the flights data
+//this data will be used to populate the flights table in the user dashboard and flight search components
+//this data will be replaced with the actual data from the backend API - MongoDB
+
 const flightsData = [
   {
     id: 1,
@@ -9,7 +13,7 @@ const flightsData = [
     departureDate: "2024-03-22",
     departureTime: "10:00 AM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "1:00 PM",
+    arrivalTime: "01:00 PM",
     state: "On Time",
   },
   {
@@ -20,7 +24,7 @@ const flightsData = [
     departureDate: "2024-03-22",
     departureTime: "11:30 AM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "3:00 PM",
+    arrivalTime: "03:00 PM",
     state: "Delayed",
   },
   {
@@ -29,7 +33,7 @@ const flightsData = [
     origin: "Dallas",
     destination: "Denver",
     departureDate: "2024-03-22",
-    departureTime: "9:45 AM",
+    departureTime: "09:45 AM",
     arrivalDate: "2024-03-22",
     arrivalTime: "11:30 AM",
     state: "On Time",
@@ -40,9 +44,9 @@ const flightsData = [
     origin: "Los Angeles",
     destination: "New York",
     departureDate: "2024-03-22",
-    departureTime: "2:00 PM",
+    departureTime: "02:00 PM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "5:00 PM",
+    arrivalTime: "05:00 PM",
     state: "On Time",
   },
   {
@@ -51,9 +55,9 @@ const flightsData = [
     origin: "Miami",
     destination: "Chicago",
     departureDate: "2024-03-22",
-    departureTime: "1:30 PM",
+    departureTime: "01:30 PM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "4:00 PM",
+    arrivalTime: "04:00 PM",
     state: "Delayed",
   },
   {
@@ -64,7 +68,7 @@ const flightsData = [
     departureDate: "2024-03-22",
     departureTime: "12:00 PM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "2:00 PM",
+    arrivalTime: "02:00 PM",
     state: "On Time",
   },
   {
@@ -75,7 +79,7 @@ const flightsData = [
     departureDate: "2024-03-22",
     departureTime: "10:30 AM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "2:00 PM",
+    arrivalTime: "02:00 PM",
     state: "Delayed",
   },
   {
@@ -86,7 +90,7 @@ const flightsData = [
     departureDate: "2024-03-22",
     departureTime: "11:00 AM",
     arrivalDate: "2024-03-22",
-    arrivalTime: "2:00 PM",
+    arrivalTime: "02:00 PM",
     state: "On Time",
   },
   {
@@ -95,7 +99,7 @@ const flightsData = [
     origin: "Chicago",
     destination: "Denver",
     departureDate: "2024-03-22",
-    departureTime: "9:00 AM",
+    departureTime: "09:00 AM",
     arrivalDate: "2024-03-22",
     arrivalTime: "11:30 AM",
     state: "Delayed",
@@ -106,7 +110,7 @@ const flightsData = [
     origin: "Miami",
     destination: "Los Angeles",
     departureDate: "2024-03-22",
-    departureTime: "8:00 AM",
+    departureTime: "08:00 AM",
     arrivalDate: "2024-03-22",
     arrivalTime: "11:00 AM",
     state: "On Time",
