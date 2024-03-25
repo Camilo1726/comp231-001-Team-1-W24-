@@ -1,4 +1,5 @@
-Flight Tracker API Documentation
+Backend API Documentation
+
 Overview
 The Flight Tracker API provides endpoints for user authentication, including signing up new users and logging in existing users.
 
