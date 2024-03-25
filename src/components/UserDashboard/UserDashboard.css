@@ -1,0 +1,37 @@
+/* UserDashboard.css */
+
+/* Style the table */
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Style table header */
+.flight-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style table rows */
+.flight-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Style table data cells */
+.flight-table td {
+  padding: 8px;
+}
+
+/* Style table cell borders */
+.flight-table td,
+.flight-table th {
+  border: 1px solid #ddd;
+}
+
+/* Style table hover effect */
+.flight-table tr:hover {
+  background-color: #f2f2f2;
+}
