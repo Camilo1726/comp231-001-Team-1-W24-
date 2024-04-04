@@ -3,6 +3,7 @@ import "./FlightSearch.css";
 //import flightsData from "../UserDashboard/flightsData"; //hardcoded data to develop the search functionality
 import { useTable, useSortBy } from 'react-table'; //interactive table to display the search results / click on a row to view flight details
 import axios from 'axios'; //import axios to make HTTP requests to the backend API
+import { useNavigate } from 'react-router-dom'; 
 
 
 const FlightSearch = () => {
@@ -33,6 +34,8 @@ const FlightSearch = () => {
       fetchFlights();
     }, []);
   
+  const navigate = useNavigate();
+
 
   //Method to format the dates to display in the table withouth the time
   const formatDate = (dateString) => {
@@ -229,7 +232,7 @@ const FlightSearch = () => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps({
-                    onClick: () => console.log('Navigate to flight detail for:', row.original.id),
+                    onClick: () => navigate(`/flight-details/${row.original._id}`), // redirect to flight details page
                     style: { cursor: 'pointer' },
                   })}
                 >

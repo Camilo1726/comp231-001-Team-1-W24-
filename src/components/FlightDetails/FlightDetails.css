@@ -1,0 +1,66 @@
+.flight-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .detail {
+    display: flex;
+    justify-content: center; /* Horizontally center the items */
+    align-items: center; /* Vertically center the items */
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .detail label {
+    font-weight: bold;
+    margin-right: 15px; /* Add some space between label and data */
+  }
+  
+  .detail span {
+    text-align: center; /* Align the text to the center */
+  }
+  
+  .check-in-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 200px;
+    margin-top: 20px;
+    align-self: center;
+  }
+  
+  .check-in-button:hover {
+    background-color: #0056b3;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin-top: 20px; /* Spacing above the buttons */
+  }
+  
+  .cancel-button {
+    padding: 10px 20px;
+    background-color: #dc3545; /* Bootstrap danger color for cancel button */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 200px;
+    margin-top: 20px;
+    align-self: center;
+  }
+  
+  .cancel-button:hover {
+    background-color: #c82333;
+  }
+  
