@@ -1,10 +1,12 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect} from "react";
 import "./FlightSearch.css";
-import flightsData from "../UserDashboard/flightsData"; //hardcoded data to develop the search functionality
-import { useTable } from 'react-table'; //interactive table to display the search results / click on a row to view flight details
+//import flightsData from "../UserDashboard/flightsData"; //hardcoded data to develop the search functionality
+import { useTable, useSortBy } from 'react-table'; //interactive table to display the search results / click on a row to view flight details
+import axios from 'axios'; //import axios to make HTTP requests to the backend API
 
 
 const FlightSearch = () => {
+  const [flights, setFlights] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [departureTime, setDepartureTime] = useState('');
@@ -16,6 +18,26 @@ const FlightSearch = () => {
 
 
   const data = useMemo(() => filteredFlights, [filteredFlights]);
+
+    // Define fetchFlights outside of useEffect so it can be called from handleSubmit
+    const fetchFlights = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/flights');
+        setFlights(response.data);
+      } catch (error) {
+        console.error('Error fetching flights:', error);
+      }
+    };
+  
+    useEffect(() => {
+      fetchFlights();
+    }, []);
+  
+
+  //Method to format the dates to display in the table withouth the time
+  const formatDate = (dateString) => {
+    return dateString.split('T')[0];
+  };  
 
   const columns = useMemo(
     () => [
@@ -33,7 +55,8 @@ const FlightSearch = () => {
       },
       {
         Header: 'Departure Date',
-        accessor: 'departureDate'
+        accessor: 'departureDate',
+        Cell: ({value}) => formatDate(value), // Use the formatDate function here
       },
       {
         Header: 'Departure Time',
@@ -41,21 +64,22 @@ const FlightSearch = () => {
       },
       {
         Header: 'Arrival Date',
-        accessor: 'arrivalDate'
+        accessor: 'arrivalDate',
+        Cell: ({value}) => formatDate(value), // Use the formatDate function here
       },
       {
         Header: 'Arrival Time',
         accessor: 'arrivalTime'
       },
       {
-        Header: 'Status', //property was defined as state, but it should be status - refactor
-        accessor: 'state'
+        Header: 'Status', //CHECK: property was defined as state, but it should be status - refactor
+        accessor: 'status'
       },
     ],
     []
   );
 
-  const tableInstance = useTable({ columns, data });
+  const tableInstance = useTable({ columns, data }, useSortBy);
 
 
   const {
@@ -67,11 +91,12 @@ const FlightSearch = () => {
   } = tableInstance;
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSearchPerformed(true); // Indicate that a search has been performed
+    await fetchFlights(); // Fetch and update flights data with the latest data from the backend
+    
     const lowerCaseQuery = searchQuery.toLowerCase();
-        const results = flightsData.filter(flight => {
+    const results = flights.filter(flight => {
       return (
         flight.flightNumber.toLowerCase().includes(lowerCaseQuery) ||
         flight.origin.toLowerCase().includes(lowerCaseQuery) ||
@@ -81,11 +106,14 @@ const FlightSearch = () => {
         flight.departureTime.includes(departureTime) &&
         flight.arrivalDate.includes(arrivalDate) &&
         flight.arrivalTime.includes(arrivalTime) &&
-        (status ? flight.state === status : true)
+        (status ? flight.status === status : true)
       );
     });
+    
     setFilteredFlights(results);
+    setSearchPerformed(true); // Now indicates that the search has been performed after updating the data and applying filters
   };
+    
 
 
   const clearFilters = () => {
@@ -181,7 +209,17 @@ const FlightSearch = () => {
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                          <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                          {column.render('Header')}
+                          {/* Add a sort direction indicator */}
+                          <span>
+                            {column.isSorted
+                              ? column.isSortedDesc
+                                ? ' ↓'
+                                : ' ↑'
+                              : ' ↑↓'}
+                          </span>
+                        </th>                
                 ))}
               </tr>
             ))}

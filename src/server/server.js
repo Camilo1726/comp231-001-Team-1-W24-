@@ -6,18 +6,18 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
+const flightRoutes = require('./routes/flight.routes');
 
 app.use(cors());
 app.use(express.json());
+console.log('MONGO_URI:', process.env.MONGO_URI);
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('MongoDB connected successfully.'))
 .catch((error) => console.error('MongoDB connection failed:', error.message));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/flights', flightRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
