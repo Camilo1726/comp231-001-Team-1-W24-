@@ -1,10 +1,12 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect} from "react";
 import "./FlightSearch.css";
-import flightsData from "../UserDashboard/flightsData"; //hardcoded data to develop the search functionality
+//import flightsData from "../UserDashboard/flightsData"; //hardcoded data to develop the search functionality
 import { useTable } from 'react-table'; //interactive table to display the search results / click on a row to view flight details
+import axios from 'axios'; //import axios to make HTTP requests to the backend API
 
 
 const FlightSearch = () => {
+  const [flights, setFlights] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [departureTime, setDepartureTime] = useState('');
@@ -16,6 +18,20 @@ const FlightSearch = () => {
 
 
   const data = useMemo(() => filteredFlights, [filteredFlights]);
+
+  useEffect(() => {
+    const fetchFlights = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/flights');
+        setFlights(response.data);
+      } catch (error) {
+        console.error('Error fetching flights:', error);
+      }
+    };
+
+    fetchFlights();
+  }, []);
+
 
   const columns = useMemo(
     () => [
@@ -48,8 +64,8 @@ const FlightSearch = () => {
         accessor: 'arrivalTime'
       },
       {
-        Header: 'Status', //property was defined as state, but it should be status - refactor
-        accessor: 'state'
+        Header: 'Status', //CHECK: property was defined as state, but it should be status - refactor
+        accessor: 'status'
       },
     ],
     []
@@ -71,7 +87,7 @@ const FlightSearch = () => {
     e.preventDefault();
     setSearchPerformed(true); // Indicate that a search has been performed
     const lowerCaseQuery = searchQuery.toLowerCase();
-        const results = flightsData.filter(flight => {
+    const results = flights.filter(flight => {
       return (
         flight.flightNumber.toLowerCase().includes(lowerCaseQuery) ||
         flight.origin.toLowerCase().includes(lowerCaseQuery) ||
@@ -81,11 +97,12 @@ const FlightSearch = () => {
         flight.departureTime.includes(departureTime) &&
         flight.arrivalDate.includes(arrivalDate) &&
         flight.arrivalTime.includes(arrivalTime) &&
-        (status ? flight.state === status : true)
+        (status ? flight.status === status : true)
       );
     });
     setFilteredFlights(results);
   };
+  
 
 
   const clearFilters = () => {
