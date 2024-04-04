@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Logout from "./components/Auth/Logout";
+import FlightSearch from "./components/FlightSearch/FlightSearch";
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/flight-search" element={<FlightSearch />} />
           <Route path="/contact-us" element={<div>Contact Us Page</div>} />
           <Route path="*" element={<div>Page Not Found</div>} />       
         </Routes>
