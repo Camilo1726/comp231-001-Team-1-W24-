@@ -4,17 +4,31 @@ import { useParams } from 'react-router-dom';
 import '../FlightSearch/FlightSearch.css'; // Same css file as flight search for now
 import './FlightDetails.css';
 import { useNavigate } from 'react-router-dom';
-
+import CheckinModal from '../Checkin/Checkin';
 
 const formatDate = (dateString) => {
     if (!dateString) return ''; // Return empty string if dateString is undefined or null
     return dateString.split('T')[0];
 };
 
+
 const FlightDetails = () => {
   const [flight, setFlight] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showCheckinModal, setShowCheckinModal] = useState(false);
+
+
+  const handleCheckinClick = () => {
+    setShowCheckinModal(true);
+  };
+  
+  const handleCheckin = (flightNumber, passportNumber, lastName) => {
+    // Close the modal after successful check-in
+    setShowCheckinModal(false);
+    // Optionally, show confirmation or refresh data
+  };
+
 
   const handleCancel = () => {
     navigate('/flight-search'); // This should match the route path you've set for Flight Search
@@ -76,9 +90,23 @@ const FlightDetails = () => {
         <span>{flight.status}</span>
       </div>
       <div className="button-group">
-      <button className="check-in-button">Check-in</button>
-      <button className="cancel-button" onClick={handleCancel}>Cancel</button>
-      </div>
+  <button className="check-in-button" onClick={handleCheckinClick}>Check-in</button>
+  <button className="cancel-button" onClick={handleCancel}>Cancel</button>
+  {showCheckinModal && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <span className="close-button" onClick={() => setShowCheckinModal(false)}>&times;</span>
+      <CheckinModal
+        flightNumber={flight.flightNumber}
+        origin={flight.origin}
+        destination={flight.destination}    
+        onClose={() => setShowCheckinModal(false)}
+        onCheckin={handleCheckin}
+      />
+    </div>
+  </div>
+  )}
+</div>
     </div>
   );
 };
