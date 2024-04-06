@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FlightSearch = () => {
   const [flights, setFlights] = useState([]);
+  const [statuses, setStatuses] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [departureTime, setDepartureTime] = useState('');
@@ -35,6 +36,21 @@ const FlightSearch = () => {
     }, []);
   
   const navigate = useNavigate();
+
+// Fetch flight statuses from the backend API
+  useEffect(() => {
+    const fetchStatuses = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/flight-statuses');
+        setStatuses(response.data);
+      } catch (error) {
+        console.error('Error fetching statuses:', error);
+      }
+    };
+
+    fetchStatuses();
+  }, []);
+
 
 
   //Method to format the dates to display in the table withouth the time
@@ -188,9 +204,9 @@ const FlightSearch = () => {
           <label htmlFor="status">Status</label>
           <select id="status" value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="">Select Status</option>
-            <option value="On Time">On Time</option>
-            <option value="Delayed">Delayed</option>
-            <option value="Cancelled">Cancelled</option>
+            {statuses.map((status, index) => (
+              <option key={index} value={status}>{status}</option>
+            ))} 
           </select>
         </div>
 

@@ -7,7 +7,8 @@ const CheckinModal = ({ flightNumber, origin, destination, onClose, onCheckin })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCheckin(flightNumber, passportNumber, lastName);
+    console.log("Checkin Attempt:", { flightNumber, passportNumber, lastName }); // line for debugging
+    onCheckin(passportNumber, lastName);
   };
 
   return (
