@@ -9,6 +9,9 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Logout from "./components/Auth/Logout";
 import FlightSearch from "./components/FlightSearch/FlightSearch";
+import Footer from "./components/Footer/Footer"; 
+
+
 function App() {
   return (
     <Router>
@@ -26,6 +29,7 @@ function App() {
           <Route path="/contact-us" element={<div>Contact Us Page</div>} />
           <Route path="*" element={<div>Page Not Found</div>} />       
         </Routes>
+        <Footer /> {}
       </div>
     </Router>
   );

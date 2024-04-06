@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import './Signup.css';
+
 
 function Signup() {
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmPassword: "" });
@@ -42,9 +44,27 @@ function Signup() {
     };
 
     return (
-        <div className="container-fluid vh-100" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/beach.gif)`, backgroundSize: 'cover' }}>
-            {/* ... rest of your JSX code */}
+        <div class="container">
+        <div class="signup-form">
+            <h2>Sign Up</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
         </div>
+    </div>
+    
     );
 }
 
