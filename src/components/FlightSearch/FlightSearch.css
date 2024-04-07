@@ -69,7 +69,12 @@
   .flights-list-container th{
   padding: 6px;
   border: 1px solid #ccc;
-  text-align: left;
+  text-align: center;
+}
+
+.flights-list-container td {
+  padding: 6px;
+  text-align: center;
 }
 
 .flights-list-container tr:hover {
