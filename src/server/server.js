@@ -1,7 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
 
 const authRoutes = require('./routes/auth.routes');
 const flightRoutes = require('./routes/flight.routes');
@@ -35,5 +35,5 @@ app.get('/api/flight-statuses', (req, res) => {
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });
