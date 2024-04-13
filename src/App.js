@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
-import Auth from "./components/Auth/Auth";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import LandingPage from "./components/LandingPage/LandingPage"; 
@@ -20,8 +19,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<LandingPage />} />  {/* Set LandingPage as the default route */}
-          <Route path="/login" element={<Auth />} />
-          <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
