@@ -14,23 +14,26 @@ router.post('/signup', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
         user = new User({
-            // Assume you collect other information such as firstName, lastName during signup
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: hashedPassword,
-            isAdmin: req.body.isAdmin || false, // Ensure that you have proper controls over who can set this
+            isAdmin: req.body.isAdmin || false,
             emailNotifications: req.body.emailNotifications || true,
             passport: req.body.passport
         });
 
         await user.save();
 
-        // Include the isAdmin property in the token payload
         const token = jwt.sign(
-            { _id: user._id, isAdmin: user.isAdmin },
+            { 
+                _id: user._id, 
+                firstName: user.firstName,
+                lastName: user.lastName,
+                isAdmin: user.isAdmin 
+            },
             process.env.JWT_SECRET,
-            { expiresIn: '2h' } // Token is valid for 2 hours
+            { expiresIn: '2h' }
         );
         
         res.status(201).send({ token });
@@ -47,15 +50,18 @@ router.post('/login', async (req, res) => {
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         if (!validPassword) return res.status(400).send('Invalid Email or Password.');
 
-        // Include the isAdmin property in the token payload
         const token = jwt.sign(
-            { _id: user._id, isAdmin: user.isAdmin },
+            { 
+                _id: user._id, 
+                firstName: user.firstName,
+                lastName: user.lastName,
+                isAdmin: user.isAdmin 
+            },
             process.env.JWT_SECRET,
-            { expiresIn: '2h' } // Token is valid for 2 hours
+            { expiresIn: '2h' }
         );
 
-        // Send both token and isAdmin flag to the client
-        res.send({ token, isAdmin: user.isAdmin });
+        res.send({ token });
     } catch (err) {
         res.status(500).send('Error in Login: ' + err.message);
     }

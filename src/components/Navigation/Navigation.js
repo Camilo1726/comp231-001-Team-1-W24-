@@ -1,15 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav } from 'react-bootstrap';
+import {jwtDecode} from 'jwt-decode';
 import './navigation.css';
 
 const Navigation = () => {
+    const navigate = useNavigate();
     const myStyle = {
         width: 200,
         height: 160,
     };
 
-    const isLoggedIn = localStorage.getItem('token');
+    const getUserInfo = () => {
+        const token = localStorage.getItem('token');
+        if (!token) return null;
+        try {
+            const decoded = jwtDecode(token);
+            return {
+                name: `${decoded.firstName} ${decoded.lastName}`,
+                isAdmin: decoded.isAdmin
+            };
+        } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+        }
+    };
+
+    const user = getUserInfo();
+    const isLoggedIn = !!user;
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/");
+    };
 
     return (
         <Navbar bg="light" expand="lg" variant="light">
@@ -19,23 +42,24 @@ const Navigation = () => {
             <Navbar.Toggle aria-controls="navbarNav" />
             <Navbar.Collapse id="navbarNav">
                 <Nav className="ml-auto">
-                    {/* Link to Home */}
                     <Nav.Item>
                         <Nav.Link as={Link} to="/" className="nav-link">
                             Home
                         </Nav.Link>
                     </Nav.Item>
-
-                    {/* Add your additional links here */}
-                    {/* ... */}
-
-                    {/* Conditional Rendering for Authentication Links */}
                     {isLoggedIn ? (
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="/logout" className="nav-link">
-                                Logout
-                            </Nav.Link>
-                        </Nav.Item>
+                        <>
+                            <Nav.Item>
+                                <Nav.Link as={Link} to="/user-dashboard" className="nav-link">
+                                    Welcome, {user.name}
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link as={Link} to="/" className="nav-link" onClick={handleLogout}>
+                                    Logout
+                                </Nav.Link>
+                            </Nav.Item>
+                        </>
                     ) : (
                         <>
                             <Nav.Item>
