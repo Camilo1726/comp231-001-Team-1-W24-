@@ -53,61 +53,27 @@ function Signup() {
     };
 
     return (
-        <div className="signup-container">
+        <div class="container">
+        <div class="signup-form">
             <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit} className="signup-form">
-                <input 
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={credentials.firstName}
-                    onChange={onChange}
-                    required
-                />
-                <input 
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={credentials.lastName}
-                    onChange={onChange}
-                    required
-                />
-                <input 
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={credentials.email}
-                    onChange={onChange}
-                    required
-                />
-                <input 
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={credentials.password}
-                    onChange={onChange}
-                    required
-                />
-                <input 
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    value={credentials.confirmPassword}
-                    onChange={onChange}
-                    required
-                />
-                <input 
-                    type="text"
-                    name="passport"
-                    placeholder="Passport Number"
-                    value={credentials.passport}
-                    onChange={onChange}
-                    required
-                />
-                {error && <div className="alert alert-danger">{error}</div>}
-                <button type="submit" className="signup-btn">Sign Up</button>
+            <form>
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
             </form>
         </div>
+    </div>
+    
     );
 }
 

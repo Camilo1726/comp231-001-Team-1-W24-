@@ -1,23 +1,29 @@
+import React, { useState, useEffect } from "react";
 import "./UserDashboard.css";
 
-// Import React, useState, useEffect
-import React, { useState, useEffect } from "react";
-import flightsData from "./flightsData"; // Import flightsData array
+import flightsData from "./flightsData";
 
-// Define UserDashboard component
 const UserDashboard = () => {
-  // Define state for flights data
-  const [flights, setFlights] = useState([]);
+  const [recentFlights, setRecentFlights] = useState([]);
 
-  // Set flights state with sample flight data
   useEffect(() => {
-    setFlights(flightsData);
+    const currentDate = new Date(); // Get the current date and time
+
+    // Filter out flights that have already departed
+    const recentFlightsData = flightsData.filter((flight) => {
+      const departureDateTime = new Date(
+        `${flight.departureDate} ${flight.departureTime}`
+      );
+      return departureDateTime > currentDate;
+    });
+
+    // Set state with recent flights data
+    setRecentFlights(recentFlightsData);
   }, []);
 
-  // JSX code for UserDashboard component
   return (
     <div>
-      <h2>Flight Details</h2>
+      <h2>Recent Flights</h2>
       <table className="flight-table">
         <thead>
           <tr>
@@ -28,12 +34,11 @@ const UserDashboard = () => {
             <th>Departure Time</th>
             <th>Arrival Date</th>
             <th>Arrival Time</th>
-            <th>State</th> {/* New column for State */}
+            <th>State</th>
           </tr>
         </thead>
         <tbody>
-          {/* Map over flights data and render rows */}
-          {flights.map((flight) => (
+          {recentFlights.map((flight) => (
             <tr key={flight.id}>
               <td>{flight.flightNumber}</td>
               <td>{flight.origin}</td>
@@ -42,7 +47,7 @@ const UserDashboard = () => {
               <td>{flight.departureTime}</td>
               <td>{flight.arrivalDate}</td>
               <td>{flight.arrivalTime}</td>
-              <td>{flight.state}</td> {/* Display the state of the flight */}
+              <td>{flight.state}</td>
             </tr>
           ))}
         </tbody>
@@ -51,5 +56,4 @@ const UserDashboard = () => {
   );
 };
 
-// Export UserDashboard component
 export default UserDashboard;

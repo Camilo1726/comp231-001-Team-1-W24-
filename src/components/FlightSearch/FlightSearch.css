@@ -3,25 +3,26 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin-bottom:15% ;
   }
   
   .search-form {
     display: flex;
-    flex-direction: row; /* Aligns children elements horizontally */
-    flex-wrap: wrap; /* Allows elements to wrap onto the next line */
-    justify-content: center; /* Centers items on the main-axis */
-    align-items: flex-start; /* Aligns items to the start of the cross-axis */
-    gap: 20px; /* Adds space between elements */
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 20px; 
     padding: 20px;
-    max-width: 1200px; /* Maximum width of the form */
-    margin: auto; /* Centers the form */
+    max-width: 1200px; 
+    margin: auto; 
   }
     
   .field-container {
     display: flex;
-    flex-direction: column; /* Stacks label on top of the input */
-    align-items: center; /* Centers items on the cross-axis */
-    width: auto; /* Allows the container to only be as wide as its content */
+    flex-direction: column; 
+    align-items: center; 
+    width: auto; 
   }
     
   .field-container label {
@@ -36,7 +37,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     width: auto;
-    box-sizing: border-box; /* Include padding and border in the element's width */
+    box-sizing: border-box; 
   }
   
   .search-form input[type="text"] {
@@ -58,7 +59,7 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    max-width: 200px; /* Sets a maximum width for the button */
+    max-width: 200px; 
   }
   
   .search-form button:hover {
@@ -76,10 +77,11 @@
   text-align: center;
 }
 
-/* Mouse hovering on flight search results*/
 .flights-list-container tr:hover {
     background-color: #bbdfff; 
   }
+
+
   
 
   
@@ -90,11 +92,11 @@
     }
 
     .field-container {
-        width: 100%; /* Full width to accommodate smaller screens */
+        width: 100%; 
       }    
   
     .search-form input[type="text"] {
-      max-width: none; /* Allow the search input to take full width on smaller screens */
+      max-width: none; 
     }
   
     .search-button-wrapper {
@@ -102,7 +104,13 @@
     }
   
     .search-form button {
-      width: 100%; /* Allow the button to take full width on smaller screens */
+      width: 100%; 
+    }
+    .time-container {
+      display: flex;
+      flex-direction: column; 
+      align-items: center; 
+      width: auto; 
     }
   }
   

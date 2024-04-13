@@ -1,62 +1,97 @@
 /* LandingPage.css */
 
 .landing-container {
-    text-align: center;
-    padding: 50px;
-    background-color: #f3f4f6; /* light grey background */
-    color: #333; /* dark text for contrast */
-  }
-  
-  .landing-header h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  .landing-header p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .cta-container {
-    margin-bottom: 50px;
-  }
-  
-  .cta-button {
-    padding: 10px 30px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .cta-button:hover {
-    background-color: #0056b3;
-  }
-  
+  text-align: center;
+  padding: 50px;
+  background-color: #f3f4f6; 
+  color: #333; 
+  height: 100vh;
+}
+
+.landing-header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.landing-header p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-container {
+  margin-bottom: 50px;
+}
+
+.cta-button {
+  padding: 10px 30px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+.features-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.feature {
+  max-width: 200px;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.feature p {
+  font-size: 1rem;
+}
+
+/* New styles for the box layout */
+.box-container {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.horizontal-container {
+  display: flex;
+  justify-content: space-between;
+}
+/*
+.box {
+  width: 47%; 
+  border: 2px solid black;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+*/
+@media (max-width: 768px) {
   .features-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .feature {
-    max-width: 200px;
-  }
-  
-  .feature h3 {
-    font-size: 1.5rem;
-    color: #007bff;
-  }
-  
-  .feature p {
-    font-size: 1rem;
-  }
-  
-  /* Add media queries for responsiveness */
-  @media (max-width: 768px) {
-    .features-container {
       flex-direction: column;
       align-items: center;
-    }
   }
+
+  .box-container {
+      width: 90%;
+      flex-direction: column;
+  }
+
+  .box {
+      width: 100%; 
+      margin-bottom: 20px;
+  }
+  .landing-header{
+    width: 100%; 
+    margin-bottom: 20px;  }
+}

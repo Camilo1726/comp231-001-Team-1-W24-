@@ -147,7 +147,16 @@ const FlightSearch = () => {
 
 
   return (
+
     <div className="flight-search-container">
+       <head>
+        <title>Flight Search</title>
+      </head>
+      <div className="time">
+      <iframe src="https://free.timeanddate.com/clock/i9bebzvt/n250/tct/pct/ahl/avt/ftb/tt0/tw1/ta1" frameborder="0" width="301" height="19" allowtransparency="true"></iframe>
+      </div>
+      <h1>Discover Your Journey: Find Your Flights</h1>
+      <hr />
       <form onSubmit={handleSubmit} className="search-form">
         <div className="field-container">
           <label htmlFor="searchQuery">Search</label>
