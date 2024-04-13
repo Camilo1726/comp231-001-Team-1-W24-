@@ -1,6 +1,17 @@
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true
+  },
   email: {
     type: String,
     required: true,
@@ -14,6 +25,14 @@ const userSchema = new mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false
+  },
+  emailNotifications: {
+    type: Boolean,
+    default: true
+  },
+  passport: {
+    type: String,
+    required: true
   }
 });
 
