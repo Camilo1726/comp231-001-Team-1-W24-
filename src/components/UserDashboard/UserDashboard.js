@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./UserDashboard.css";
-
-import flightsData from "./flightsData";
 
 const UserDashboard = () => {
   const [recentFlights, setRecentFlights] = useState([]);
 
   useEffect(() => {
-    const currentDate = new Date(); // Get the current date and time
-
-    // Filter out flights that have already departed
-    const recentFlightsData = flightsData.filter((flight) => {
-      const departureDateTime = new Date(
-        `${flight.departureDate} ${flight.departureTime}`
-      );
-      return departureDateTime > currentDate;
-    });
-
-    // Set state with recent flights data
-    setRecentFlights(recentFlightsData);
-  }, []);
+    // Fetch recent flights data from the backend
+    axios
+      .get("http://localhost:5000/api/flights")
+      .then((response) => {
+        console.log("Fetched flights data:", response.data);
+        setRecentFlights(response.data);
+        console.log("Recent flights:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching flights:", error);
+      });
+  }, []); // This effect runs only once after the component mounts
 
   return (
     <div>
@@ -34,20 +32,20 @@ const UserDashboard = () => {
             <th>Departure Time</th>
             <th>Arrival Date</th>
             <th>Arrival Time</th>
-            <th>State</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {recentFlights.map((flight) => (
-            <tr key={flight.id}>
+            <tr key={flight._id}>
               <td>{flight.flightNumber}</td>
               <td>{flight.origin}</td>
               <td>{flight.destination}</td>
-              <td>{flight.departureDate}</td>
+              <td>{new Date(flight.departureDate).toLocaleDateString()}</td>
               <td>{flight.departureTime}</td>
-              <td>{flight.arrivalDate}</td>
+              <td>{new Date(flight.arrivalDate).toLocaleDateString()}</td>
               <td>{flight.arrivalTime}</td>
-              <td>{flight.state}</td>
+              <td>{flight.status}</td>
             </tr>
           ))}
         </tbody>
