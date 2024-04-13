@@ -10,13 +10,18 @@ const Navigation = () => {
         <nav className="custom-nav">
              <div className="logo-container">
                 <Link to="/" className="logo">
-                    <img src="/logo.png" alt="Logo" className="logo-image-main" /> {/* Update the image source */}
+                    <img src="/logo.png" alt="Logo" className="logo-image-main" />
                 </Link>
             </div>
             <ul className="nav-links">
                 <li className="nav-item">
                     <Link to="/" className="nav-link">
                         Home
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/flight-search" className="nav-link">
+                        Flight Search
                     </Link>
                 </li>
                 {/* Add your additional links here */}

@@ -11,10 +11,8 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement your login/register logic here
   };
 
-  // Remove or use backgroundImageUrl variable as needed
   const backgroundImageUrl = "/background.png";
 
   return (
