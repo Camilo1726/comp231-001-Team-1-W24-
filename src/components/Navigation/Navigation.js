@@ -1,21 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav } from 'react-bootstrap';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode'; // make sure the import is correct
 import './navigation.css';
 
 const Navigation = () => {
     const navigate = useNavigate();
-    const myStyle = {
-        width: 200,
-        height: 160,
-    };
 
     const getUserInfo = () => {
         const token = localStorage.getItem('token');
         if (!token) return null;
         try {
-            const decoded = jwtDecode(token);
+            const decoded = jwtDecode(token); // this is case-sensitive and should match the import statement
             return {
                 name: `${decoded.firstName} ${decoded.lastName}`,
                 isAdmin: decoded.isAdmin
@@ -35,47 +31,50 @@ const Navigation = () => {
     };
 
     return (
-        <Navbar bg="light" expand="lg" variant="light">
+        <Navbar bg="light" expand="lg" variant="light" className="custom-nav">
             <Navbar.Brand as={Link} to="/">
-                <img src="logo_oasis_nav.png" style={myStyle} alt="Flight Tracker" />
+                <img src="/logo.png" alt="Logo" className="logo-image-main" />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarNav" />
-            <Navbar.Collapse id="navbarNav">
-                <Nav className="ml-auto">
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/" className="nav-link">
-                            Home
-                        </Nav.Link>
-                    </Nav.Item>
-                    {isLoggedIn ? (
-                        <>
-                            <Nav.Item>
-                                <Nav.Link as={Link} to="/user-dashboard" className="nav-link">
-                                    Welcome, {user.name}
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link as={Link} to="/" className="nav-link" onClick={handleLogout}>
-                                    Logout
-                                </Nav.Link>
-                            </Nav.Item>
-                        </>
-                    ) : (
-                        <>
-                            <Nav.Item>
-                                <Nav.Link as={Link} to="/login" className="nav-link">
-                                    Login
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link as={Link} to="/signup" className="nav-link">
-                                    Sign Up
-                                </Nav.Link>
-                            </Nav.Item>
-                        </>
-                    )}
-                </Nav>
-            </Navbar.Collapse>
+            <Nav className="ml-auto">
+                <Nav.Item>
+                    <Nav.Link as={Link} to="/" className="nav-link">
+                        Home
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link as={Link} to="/flight-search" className="nav-link">
+                        Flight Search
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                            <Nav.Link as={Link} to="/signup" className="nav-link">
+                                Sign Up
+                            </Nav.Link>
+                        </Nav.Item>
+
+                {isLoggedIn ? (
+                    <>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/" className="nav-link" onClick={handleLogout}>
+                                Logout
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/user-dashboard" className="nav-link">
+                                Welcome, {user.name}
+                            </Nav.Link>
+                        </Nav.Item>
+                    </>
+                ) : (
+                    <>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/login" className="nav-link">
+                                Login
+                            </Nav.Link>
+                        </Nav.Item>
+                    </>
+                )}
+            </Nav>
         </Navbar>
     );
 };

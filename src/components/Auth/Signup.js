@@ -55,57 +55,80 @@ function Signup() {
 
     return (
         <div className='signup-container'>
-            <h2>Sign Up</h2>
             <form onSubmit={handleSubmit} className='signup-form'>
-                <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={credentials.firstName}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={credentials.lastName}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={credentials.email}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={credentials.password}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    value={credentials.confirmPassword}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="passport"
-                    placeholder="Passport Number"
-                    value={credentials.passport}
-                    onChange={onChange}
-                    required
-                />
-                <div className="form-check">
+                <div className='mb-3'>
+                    <label htmlFor="firstName" className="form-label">First Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="firstName"
+                        name="firstName"
+                        value={credentials.firstName}
+                        onChange={onChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="lastName" className="form-label">Last Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="lastName"
+                        name="lastName"
+                        value={credentials.lastName}
+                        onChange={onChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        name="email"
+                        value={credentials.email}
+                        onChange={onChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        name="password"
+                        value={credentials.password}
+                        onChange={onChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={credentials.confirmPassword}
+                        onChange={onChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="passport" className="form-label">Passport Number</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="passport"
+                        name="passport"
+                        value={credentials.passport}
+                        onChange={onChange}
+                        required
+                    />
+                </div>
+                <div className="form-check mb-3">
                     <input
                         type="checkbox"
                         className="form-check-input"
@@ -119,10 +142,11 @@ function Signup() {
                     </label>
                 </div>
                 {error && <div className='alert alert-danger'>{error}</div>}
-                <button type='submit' className='signup-btn'>Sign Up</button>
+                <button type='submit' className='btn btn-primary'>Sign Up</button>
             </form>
-        </div>    
+        </div>
     );
+    
 }
 
 export default Signup;

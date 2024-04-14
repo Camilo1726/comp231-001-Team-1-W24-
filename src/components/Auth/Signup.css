@@ -1,15 +1,21 @@
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-bottom: 15%;
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7; /* Match background color from Login.css */
 }
 
 .signup-form {
-    background-color: #f4f4f4;
+    width: 100%;
+    max-width: 350px; /* Adjust width as needed to match Login.css */
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .signup-form h2 {
@@ -21,26 +27,55 @@
     margin-bottom: 20px;
 }
 
-.form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.form-control, .signup-btn {
+    box-sizing: border-box; /* Include padding in width */
+    width: 100%; /* Match width from Login.css */
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
 }
 
-.btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
+.signup-btn {
     color: #fff;
-    cursor: pointer;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-.btn:hover {
-    background-color: #0056b3;
+.signup-btn:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/* Additional styles for checkbox */
+.form-check {
+    margin-bottom: 1rem;
+}
+
+.form-check-input {
+    margin-right: .25rem;
+    margin-top: .25rem;
+}
+
+.form-check-label {
+    display: block;
+    margin-left: 1.5rem; /* Align label with input fields */
 }

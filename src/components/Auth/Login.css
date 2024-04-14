@@ -1,20 +1,23 @@
-/* Add this CSS to the Login.css file in the same directory as your Login.js */
+/* Login.css */
 .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f7f7f7; /* Example background color, change as needed */
+    background-color: #f7f7f7;
 }
 
 .form-container {
     width: 100%;
-    max-width: 320px; /* Adjust width as needed */
+    max-width: 350px; /* Adjust as necessary */
     padding: 20px;
     border-radius: 5px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensures that child elements are the width of this container */
 }
 
 .form-label {
@@ -25,7 +28,7 @@
 
 .form-control {
     display: block;
-    width: 100%;
+    width: calc(100% - 1.5rem); /* Reduces the width by the total left and right padding */
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -45,7 +48,7 @@
     border-radius: .25rem;
     font-size: 1rem;
     line-height: 1.5;
-    width: 100%;
+    width: 100%; /* Full width */
 }
 
 .btn-primary:hover {
@@ -62,5 +65,33 @@
     padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 350px; /* Adjust as necessary */
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: 600;
+}
+
+.form-control, .btn-primary {
+    box-sizing: border-box; /* This ensures padding is included in the total width and height */
+    width: 100%; /* Full width */
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem; /* Space between inputs and button */
     border-radius: .25rem;
 }
