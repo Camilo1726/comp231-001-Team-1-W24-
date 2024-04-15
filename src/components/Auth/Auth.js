@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import './Auth.css';
 
+// Auth component
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true); // Toggle between Login and Register
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
+  // Function to handle input changes
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-
+  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
+  // Background image URL
   const backgroundImageUrl = "/background.png";
 
   return (

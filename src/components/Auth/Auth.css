@@ -1,4 +1,4 @@
-/* Auth.css */
+/* Container for whole page*/
 .auth-container {
   width: 300px;
   margin: auto;
@@ -8,6 +8,7 @@
   
 }
 
+/* design for input fields*/
 input[type="email"], input[type="password"] {
   width: 100%;
   padding: 10px;

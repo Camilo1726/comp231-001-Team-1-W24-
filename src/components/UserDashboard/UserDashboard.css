@@ -1,4 +1,3 @@
-/* UserDashboard.css */
 
 /* Style the table */
 .flight-table {
@@ -62,6 +61,6 @@
 }
 
 .clickable-row:hover {
-  background-color: #226b9b; /* or any other hover color */
+  background-color: #226b9b;
   color: white;
 }

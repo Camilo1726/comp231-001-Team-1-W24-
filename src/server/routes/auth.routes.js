@@ -5,6 +5,7 @@ const User = require('../models/user.model');
 
 const router = express.Router();
 
+//route to signup
 router.post('/signup', async (req, res) => {
     try {
         let user = await User.findOne({ email: req.body.email });
@@ -30,7 +31,7 @@ router.post('/signup', async (req, res) => {
                 _id: user._id, 
                 firstName: user.firstName,
                 lastName: user.lastName,
-                passport: user.passport, //REMOVE this in case authentication breaks > Used dashboard
+                passport: user.passport,
                 isAdmin: user.isAdmin 
             },
             process.env.JWT_SECRET,
@@ -43,6 +44,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+//route to login
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
@@ -56,7 +58,7 @@ router.post('/login', async (req, res) => {
                 _id: user._id, 
                 firstName: user.firstName,
                 lastName: user.lastName,
-                passport: user.passport, //REMOVE this in case authentication breaks > User dashboard
+                passport: user.passport,
                 isAdmin: user.isAdmin 
             },
             process.env.JWT_SECRET,

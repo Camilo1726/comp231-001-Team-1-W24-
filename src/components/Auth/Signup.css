@@ -8,7 +8,7 @@
 
 .signup-form {
     width: 100%;
-    max-width: 350px; /* Adjust width as needed to match Login.css */
+    max-width: 350px;
     padding: 20px;
     border-radius: 5px;
     background-color: #ffffff;

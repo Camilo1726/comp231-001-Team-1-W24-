@@ -1,8 +1,7 @@
 import React, { useState, useMemo, useEffect} from "react";
 import "./FlightSearch.css";
-//import flightsData from "../UserDashboard/flightsData"; //hardcoded data to develop the search functionality
 import { useTable, useSortBy } from 'react-table'; //interactive table to display the search results / click on a row to view flight details
-import axios from 'axios'; //import axios to make HTTP requests to the backend API
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 
 
@@ -21,6 +20,7 @@ const FlightSearch = () => {
   const navigate = useNavigate();
   const data = useMemo(() => filteredFlights, [filteredFlights]);
 
+  // Fetch flights data from the backend
   const fetchFlights = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/flights');
@@ -30,32 +30,18 @@ const FlightSearch = () => {
     }
   };
 
+  // Fetch flights data from the backend
   useEffect(() => {
       fetchFlights();
     }, []);
   
-
-/* Fetch flight statuses from the backend API > HARDCODED for the time being
-  useEffect(() => {
-    const fetchStatuses = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/flight-statuses');
-        setStatuses(response.data);
-      } catch (error) {
-        console.error('Error fetching statuses:', error);
-      }
-    };
-
-    fetchStatuses();
-  }, []);
-*/
-
 
   //Method to format the dates to display in the table withouth the time
   const formatDate = (dateString) => {
     return dateString.split('T')[0];
   };  
 
+  // Define the columns for the table
   const columns = useMemo(
     () => [
       {
@@ -73,7 +59,7 @@ const FlightSearch = () => {
       {
         Header: 'Departure Date',
         accessor: 'departureDate',
-        Cell: ({value}) => formatDate(value), // Use the formatDate function here
+        Cell: ({value}) => formatDate(value), // formaDate to display the date without the time
       },
       {
         Header: 'Departure Time',
@@ -82,23 +68,24 @@ const FlightSearch = () => {
       {
         Header: 'Arrival Date',
         accessor: 'arrivalDate',
-        Cell: ({value}) => formatDate(value), // Use the formatDate function here
+        Cell: ({value}) => formatDate(value), // formaDate to display the date without the time
       },
       {
         Header: 'Arrival Time',
         accessor: 'arrivalTime'
       },
       {
-        Header: 'Status', //CHECK: property was defined as state, but it should be status - refactor
+        Header: 'Status',
         accessor: 'status'
       },
     ],
     []
   );
 
+  // Use the useTable hook to create the table instance
   const tableInstance = useTable({ columns, data: filteredFlights }, useSortBy);
 
-
+  // Destructure the table instance for easier access
   const {
     getTableProps,
     getTableBodyProps,
@@ -107,7 +94,7 @@ const FlightSearch = () => {
     prepareRow,
   } = tableInstance;
 
-
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetchFlights(); // Fetch and update flights data with the latest data from the backend
@@ -132,7 +119,7 @@ const FlightSearch = () => {
   };
     
 
-
+  // Clear all filters
   const clearFilters = () => {
     setSearchQuery('');
     setDepartureDate('');

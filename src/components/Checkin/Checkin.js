@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './Checkin.css'; //  CSS file for Checkin component
+import './Checkin.css';
 
+// CheckinModal component / popoup  window
 const CheckinModal = ({ flightNumber, origin, destination, onClose, onCheckin }) => {
     const [passportNumber, setPassportNumber] = useState('');
   const [lastName, setLastName] = useState('');

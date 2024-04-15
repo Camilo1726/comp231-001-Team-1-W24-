@@ -1,16 +1,13 @@
 import React from "react";
 
+//admin dashboard component
 const AdminDashboard = () => {
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      {/* Add admin-specific content and features here */}
+      {/* Add admin-specific content and features here for RELEASE 2.0 */}
     </div>
   );
 };
 
-/* export Admin dashboard */
-
-
-/* Camilo's Test */
 export default AdminDashboard;

@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; // The correct import statement, no brackets needed
-import axios from 'axios'; // Import axios to make the API call
+import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 
 import './Login.css';
 
+// Login component
 function Login() {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    // Check if user is already logged in
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
+            // Decode the token
             try {
                 const decodedToken = jwtDecode(token);
                 if (decodedToken.exp * 1000 > Date.now()) {
@@ -27,6 +30,7 @@ function Login() {
         }
     }, [navigate]);
 
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -55,6 +59,7 @@ function Login() {
         }
     };
 
+    // Handle input changes
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
     };

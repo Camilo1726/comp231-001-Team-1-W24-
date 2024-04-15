@@ -1,32 +1,33 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav } from 'react-bootstrap';
-import { jwtDecode } from 'jwt-decode'; // make sure the import is correct
+import { jwtDecode } from 'jwt-decode';
 import './navigation.css';
 
+// Navigation bar component
 const Navigation = () => {
     const navigate = useNavigate();
-
+    // Function to get user info from the token
     const getUserInfo = () => {
         const token = localStorage.getItem('token');
         if (!token) return null;
         try {
-            const decoded = jwtDecode(token); // this is case-sensitive and should match the import statement
+            const decoded = jwtDecode(token); // Decode the token to get user info
             return {
                 name: `${decoded.firstName} ${decoded.lastName}`,
                 isAdmin: decoded.isAdmin
             };
         } catch (error) {
-            console.error('Error decoding token:', error);
+            console.error('Error decoding token:', error); // Log an error if decoding fails
             return null;
         }
     };
-
+    // Check if the user is logged in
     const user = getUserInfo();
     const isLoggedIn = !!user;
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("token"); // Remove the token from local storage
         navigate("/");
     };
 

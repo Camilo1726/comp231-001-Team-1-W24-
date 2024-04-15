@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Correct import if jwt-decode is a default export
+import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
 import './Signup.css';
 
+// Signup component
 function Signup() {
     const [credentials, setCredentials] = useState({
         firstName: '',
@@ -17,6 +18,7 @@ function Signup() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (credentials.password !== credentials.confirmPassword) {
@@ -45,6 +47,7 @@ function Signup() {
         }
     };
 
+    // Handle input changes
     const onChange = (e) => {
         const { name, value, type, checked } = e.target;
         setCredentials({

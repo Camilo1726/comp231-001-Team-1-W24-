@@ -34,8 +34,8 @@
   
   .close-button {
     position: absolute;
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Adjust as needed */  
+    top: 10px;
+    right: 10px; 
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -51,7 +51,7 @@
 
   /* Style for the buttons */
 .modal-button {
-    width: auto; /* Adjust the width as necessary, auto will make it depend on the content */
+    width: auto; /* auto will make it depend on the content */
     padding: 10px 20px;
     margin: 5px; /* Equal margin for spacing */
     flex-grow: 1; /* Buttons will grow equally to fill the space */
@@ -83,7 +83,7 @@
 
   
   .modal-button.check-in {
-    background-color: #007bff; /* Blue */
+    background-color: #007bff;
     color: white;
     margin-right: 0;
   }
@@ -93,7 +93,7 @@
   }
   
   .modal-button.cancel {
-    background-color: #dc3545; /* Red */
+    background-color: #dc3545;
     color: white;
     margin-right: 0;
   }

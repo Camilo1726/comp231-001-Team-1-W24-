@@ -6,12 +6,13 @@
   import { useNavigate } from 'react-router-dom';
   import CheckinModal from '../Checkin/Checkin';
 
+  // Function to format the date to display in the flight details
   const formatDate = (dateString) => {
       if (!dateString) return ''; // Return empty string if dateString is undefined or null
       return dateString.split('T')[0];
   };
 
-
+  // FlightDetails component
   const FlightDetails = () => {
     const [flight, setFlight] = useState({});
     const { id } = useParams();
@@ -21,7 +22,7 @@
     const handleCheckinClick = () => {
       setShowCheckinModal(true);
     };
-    
+    // Function to handle the check-in process
     const handleCheckin = async (passportNumber, lastName) => {
       try {
         if (!flight || !flight.flightNumber) {
@@ -64,11 +65,12 @@
       }
     };  
   }
+    // Function to handle the cancel process
     const handleCancel = () => {
-      navigate('/flight-search'); // This should match the route path you've set for Flight Search
+      navigate('/flight-search'); // route path set for Flight Search
     };
 
-
+    // Fetch flight details using the flight ID from the URL
     useEffect(() => {
       const fetchFlightDetails = async () => {
         try {
@@ -83,7 +85,7 @@
     }, [id]);
 
     if (!flight) {
-      // If flight details are not yet fetched, you can show a loader or a message
+      // If flight details are not yet fetched, show a message
       return <div>Loading flight details...</div>;
     }
 

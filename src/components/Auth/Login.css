@@ -1,4 +1,3 @@
-/* Login.css */
 .container-fluid {
     display: flex;
     justify-content: center;
@@ -9,7 +8,7 @@
 
 .form-container {
     width: 100%;
-    max-width: 350px; /* Adjust as necessary */
+    max-width: 350px;
     padding: 20px;
     border-radius: 5px;
     background-color: #ffffff;
@@ -17,7 +16,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Ensures that child elements are the width of this container */
+    align-items: stretch; /* Child elements are the width of this container */
 }
 
 .form-label {
@@ -70,7 +69,7 @@
 
 .form-container {
     width: 100%;
-    max-width: 350px; /* Adjust as necessary */
+    max-width: 350px;
     padding: 20px;
     border-radius: 5px;
     background-color: #ffffff;
@@ -87,8 +86,8 @@
 }
 
 .form-control, .btn-primary {
-    box-sizing: border-box; /* This ensures padding is included in the total width and height */
-    width: 100%; /* Full width */
+    box-sizing: border-box; /* padding is included in the total width and height */
+    width: 100%;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;

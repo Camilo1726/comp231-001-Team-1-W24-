@@ -4,11 +4,13 @@ import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import "./UserDashboard.css";
 
+// User dashboard component
 const UserDashboard = () => {
   const [recentFlights, setRecentFlights] = useState([]);
   const [user, setUser] = useState({ firstName: '', lastName: '', passport: '' });
   const navigate = useNavigate();
 
+  // This effect runs when the component mounts
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -17,7 +19,7 @@ const UserDashboard = () => {
         setUser({
           firstName: decoded.firstName,
           lastName: decoded.lastName,
-          passport: decoded.passport, // Ensure this matches the key in the token payload
+          passport: decoded.passport, // Set the passport number from the token
         });
       } catch (error) {
         console.error('Error decoding token:', error);
@@ -38,7 +40,7 @@ const UserDashboard = () => {
     }
 }, [user.passport]); // This effect runs when the passport number is set
 
-  
+  // Function to handle the click event on a flight row
   const handleFlightClick = (flightId) => {
     navigate(`/flight-details/${flightId}`);
   };
