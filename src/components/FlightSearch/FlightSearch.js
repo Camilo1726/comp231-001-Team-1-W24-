@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FlightSearch = () => {
   const [flights, setFlights] = useState([]);
-  const [statuses, setStatuses] = useState([]);
+  const [statuses] = useState(['On Time', 'Delayed', 'Cancelled', 'Pending', 'Rescheduled', 'Boarding', 'Gate Closed', 'In Flight', 'Diverted', 'Landed', 'Arrived']);
   const [searchQuery, setSearchQuery] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [departureTime, setDepartureTime] = useState('');
@@ -18,26 +18,24 @@ const FlightSearch = () => {
   const [filteredFlights, setFilteredFlights] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false); // track if search has been performed
 
-
+  const navigate = useNavigate();
   const data = useMemo(() => filteredFlights, [filteredFlights]);
 
-    // Define fetchFlights outside of useEffect so it can be called from handleSubmit
-    const fetchFlights = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/flights');
-        setFlights(response.data);
-      } catch (error) {
-        console.error('Error fetching flights:', error);
-      }
-    };
-  
-    useEffect(() => {
+  const fetchFlights = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/flights');
+      setFlights(response.data);
+    } catch (error) {
+      console.error('Error fetching flights:', error);
+    }
+  };
+
+  useEffect(() => {
       fetchFlights();
     }, []);
   
-  const navigate = useNavigate();
 
-// Fetch flight statuses from the backend API
+/* Fetch flight statuses from the backend API > HARDCODED for the time being
   useEffect(() => {
     const fetchStatuses = async () => {
       try {
@@ -50,7 +48,7 @@ const FlightSearch = () => {
 
     fetchStatuses();
   }, []);
-
+*/
 
 
   //Method to format the dates to display in the table withouth the time
@@ -98,7 +96,7 @@ const FlightSearch = () => {
     []
   );
 
-  const tableInstance = useTable({ columns, data }, useSortBy);
+  const tableInstance = useTable({ columns, data: filteredFlights }, useSortBy);
 
 
   const {
@@ -125,7 +123,7 @@ const FlightSearch = () => {
         flight.departureTime.includes(departureTime) &&
         flight.arrivalDate.includes(arrivalDate) &&
         flight.arrivalTime.includes(arrivalTime) &&
-        (status ? flight.status === status : true)
+        (!status || flight.status === status)
       );
     });
     

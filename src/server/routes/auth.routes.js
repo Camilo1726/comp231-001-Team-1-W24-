@@ -30,6 +30,7 @@ router.post('/signup', async (req, res) => {
                 _id: user._id, 
                 firstName: user.firstName,
                 lastName: user.lastName,
+                passport: user.passport, //REMOVE this in case authentication breaks > Used dashboard
                 isAdmin: user.isAdmin 
             },
             process.env.JWT_SECRET,
@@ -55,6 +56,7 @@ router.post('/login', async (req, res) => {
                 _id: user._id, 
                 firstName: user.firstName,
                 lastName: user.lastName,
+                passport: user.passport, //REMOVE this in case authentication breaks > User dashboard
                 isAdmin: user.isAdmin 
             },
             process.env.JWT_SECRET,

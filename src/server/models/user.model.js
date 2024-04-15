@@ -30,9 +30,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  //passport number is NOT unique yet. 
   passport: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   }
 });
 

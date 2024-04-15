@@ -25,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/flights', flightRoutes);
 app.use('/api/checkins', checkinRoutes);
+app.use('/api', flightRoutes); // Adjust based on how you've structured your routes
 
 // Route to get flight statuses
 app.get('/api/flight-statuses', (req, res) => {

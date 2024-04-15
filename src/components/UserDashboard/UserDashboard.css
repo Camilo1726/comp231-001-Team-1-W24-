@@ -2,17 +2,18 @@
 
 /* Style the table */
 .flight-table {
-  width: 100%;
+  width: 33%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
 /* Style table header */
 .flight-table th {
-  background-color: #f2f2f2;
+  background-color: #dedede;
   font-weight: bold;
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 /* Style table rows */
@@ -23,15 +24,44 @@
 /* Style table data cells */
 .flight-table td {
   padding: 8px;
+  text-align: center;
 }
 
 /* Style table cell borders */
 .flight-table td,
-.flight-table th {
-  border: 1px solid #ddd;
+.flight-table th {  
+  border: 3px solid #226b9b20;
+  padding: 5px;
 }
 
 /* Style table hover effect */
 .flight-table tr:hover {
-  background-color: #f2f2f2;
+  background-color: #226b9b;
+  color: white;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.welcome-section {
+  width: 25%;
+  margin-top: 50px;
+  font-size: 22px;
+}
+
+.search-link span {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: #226b9b; /* or any other hover color */
+  color: white;
 }
